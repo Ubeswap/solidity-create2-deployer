@@ -39,5 +39,9 @@
     "type": "git",
     "url": "https://github.com/thegostep/solidity-create2-deployer.git"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "files": [
+    "contracts",
+    "dist"
+  ]
 }
