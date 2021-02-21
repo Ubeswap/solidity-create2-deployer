@@ -2,6 +2,7 @@ import { Provider, TransactionReceipt } from '@ethersproject/providers'
 import { ethers } from 'ethers'
 import { Interface } from 'ethers/lib/utils'
 
+export const deployerAddress = '0x2287Fa6efdEc6d8c3E0f4612ce551dEcf89A357A'
 export const deployerKey =
   '0x563905A5FBF71C05A44BE9240E62DBD777D69A2E20D702AA584841AF7C04E939'
 export const factoryAddress = '0x4a27c059FD7E383854Ea7DE6Be9c390a795f6eE3'
