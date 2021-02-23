@@ -1,16 +1,17 @@
+import { Provider, TransactionReceipt } from '@ethersproject/providers'
 import assert from 'assert'
 import { ethers, Signer } from 'ethers'
-import { Provider, TransactionReceipt } from '@ethersproject/providers'
-
 import {
-  factoryAbi,
-  factoryBytecode,
-  factoryAddress,
-  buildCreate2Address,
   buildBytecode,
+  buildCreate2Address,
+  deployerKey,
+  factoryAbi,
+  factoryAddress,
+  factoryBytecode,
   parseEvents,
   saltToHex,
 } from './utils'
+export * from './utils'
 
 /**
  * Deploy contract using create2.
@@ -92,21 +93,26 @@ export async function isDeployed(address: string, provider: Provider) {
 }
 
 /**
+ * Deploy create2 factory with the given wallet.
+ */
+export async function deployFactoryWithWallet(wallet: ethers.Wallet) {
+  const Factory = new ethers.ContractFactory(
+    factoryAbi,
+    factoryBytecode,
+    wallet,
+  )
+  const factory = await Factory.deploy()
+  assert.strictEqual(factory.address, factoryAddress)
+  return factory.address
+}
+
+/**
  * Deploy create2 factory for local development.
  *
  * Deploys the create2 factory locally for development purposes. Requires funding address `0x2287Fa6efdEc6d8c3E0f4612ce551dEcf89A357A` with eth to perform deployment.
  *
  */
 export async function deployFactory(provider: Provider) {
-  const key =
-    '0x563905A5FBF71C05A44BE9240E62DBD777D69A2E20D702AA584841AF7C04E939'
-  const signer = new ethers.Wallet(key, provider)
-  const Factory = new ethers.ContractFactory(
-    factoryAbi,
-    factoryBytecode,
-    signer,
-  )
-  const factory = await Factory.deploy()
-  assert.strictEqual(factory.address, factoryAddress)
-  return factory.address
+  const signer = new ethers.Wallet(deployerKey, provider)
+  return deployFactoryWithWallet(signer)
 }
