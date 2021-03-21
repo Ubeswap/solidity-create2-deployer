@@ -99,5 +99,13 @@ export const parseEvents = (
   eventName: string,
 ) =>
   receipt.logs
-    .map((log) => contractInterface.parseLog(log))
+    .map((log) => {
+      try {
+        return contractInterface.parseLog(log)
+      } catch (e) {
+        // ignore unknown log messages (events logged in the constructor)
+        return null
+      }
+    })
+    .filter((log): log is ethers.utils.LogDescription => !!log)
     .filter((log) => log.name === eventName)
