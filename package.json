@@ -1,6 +1,6 @@
 {
   "name": "@ubeswap/solidity-create2-deployer",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "Javascript deployer for CREATE2 ethereum contracts.",
   "homepage": "https://github.com/thegostep/solidity-create2-deployer",
   "main": "./dist/src/index.js",
@@ -19,8 +19,8 @@
     "@types/mocha": "^8.0.3",
     "@types/node": "^14.11.2",
     "chai": "^4.2.0",
-    "ethers": "^5.0.14",
     "ethereum-waffle": "^3.1.0",
+    "ethers": "^5.0.14",
     "prettier": "^2.1.2",
     "prettier-plugin-solidity": "^1.0.0-alpha.57",
     "solc": "^0.7.1",
