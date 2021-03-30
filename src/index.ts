@@ -11,6 +11,7 @@ import {
   parseEvents,
   saltToHex,
 } from './utils'
+export * from './deployCreate2'
 export * from './utils'
 
 /**
