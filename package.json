@@ -1,6 +1,6 @@
 {
   "name": "@ubeswap/solidity-create2-deployer",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Javascript deployer for CREATE2 ethereum contracts.",
   "homepage": "https://github.com/thegostep/solidity-create2-deployer",
   "main": "./dist/src/index.js",
