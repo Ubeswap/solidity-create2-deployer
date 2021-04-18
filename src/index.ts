@@ -1,6 +1,7 @@
 import { Provider, TransactionReceipt } from '@ethersproject/providers'
 import assert from 'assert'
 import { ethers, Signer } from 'ethers'
+import { getAddress } from 'ethers/lib/utils'
 import {
   buildBytecode,
   buildCreate2Address,
@@ -49,12 +50,15 @@ export async function deployContract({
 
   const logs = parseEvents(result, factory.interface, 'Deployed')
 
+  if (logs.length === 0) {
+    throw new Error('Contract not deployed')
+  }
   const addr = logs[0].args.addr.toLowerCase()
   assert.strictEqual(addr, computedAddr)
 
   return {
     txHash: result.transactionHash as string,
-    address: addr as string,
+    address: getAddress(addr as string),
     receipt: result as TransactionReceipt,
   }
 }
